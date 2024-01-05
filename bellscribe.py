@@ -1,6 +1,7 @@
 import os
 import time
 import argparse
+import subprocess
 
 # Create the parser
 parser = argparse.ArgumentParser()
@@ -23,14 +24,14 @@ with open('output.txt','a') as outfile:
                     result = 1
                     i += 1
                     while result != 0:
-                            #cmd = "node . mint " + args.address + " '" + location + file + "' " + args.fee
-                            print("node . mint " + args.address + " '" + location + file + "' " + args.fee)
-                            output = os.popen("node . mint " + args.address + " '" + location + file + "' " + args.fee).read()
-                            outfile.write(output + "\n")
+                            cmd = "node . mint " + args.address + " '" + location + file + "' " + args.fee
+                            #print("node . mint " + args.address + " '" + location + file + "' " + args.fee)
+                            result = subprocess.call(cmd, stdout=outfile)
+                            #outfile.write(output + "\n")
                             #result = os.system("node . mint " + args.address + " '" + location + file + "' " + args.fee)
                           
-                            #print("Output: " + str(result))
-                            time.sleep(0.5)
+                            print("Output: " + str(result))
+                            time.sleep(1.0)
                             if result == 0:
                                     os.system("mv" + " '" + location + file + "' " + location + "done/")
                                     print("Count: " + str(i))
