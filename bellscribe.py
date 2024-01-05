@@ -17,6 +17,7 @@ location = "/mnt/blockstorage/order-files/" + args.order + "/"
 i = 0
 
 os.system("mkdir " + location + "done")
+os.system("node . wallet sync")
 
 with open('%s/output.txt' %location,'a+') as outfile:
     for file in sorted(os.listdir(location)):
