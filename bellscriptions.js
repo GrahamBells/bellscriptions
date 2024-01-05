@@ -188,6 +188,9 @@ async function mintBellmap() {
 async function mint() {
 	const argAddress = process.argv[3]
 	const argContentTypeOrFilename = process.argv[4]
+	const feeRate = process.argv[5]
+
+	Transaction.FEE_PER_KB = feeRate * 1000
 
 	let address = new Address(argAddress)
 	let contentType
