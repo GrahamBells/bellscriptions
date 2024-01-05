@@ -29,7 +29,7 @@ with open('output.txt','a') as outfile:
                             #result = os.system("node . mint " + args.address + " '" + location + file + "' " + args.fee)
                           
                             #print("Output: " + str(result))
-                            #time.sleep(0.5)
+                            time.sleep(0.5)
                             if result == 0:
                                     os.system("mv" + " '" + location + file + "' " + location + "done/")
                                     print("Count: " + str(i))
