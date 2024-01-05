@@ -18,7 +18,7 @@ i = 0
 
 os.system("mkdir " + location + "done")
 
-with open('output.txt','a') as outfile:
+with open('output.txt','w') as outfile:
     for file in sorted(os.listdir(location)):
             if file != "order_details.txt" and file != "done" and file != "output.txt":
                     result = 1
@@ -26,16 +26,12 @@ with open('output.txt','a') as outfile:
                     while result != 0:
                             cmd = "node . mint " + args.address + " '" + location + file + "' " + args.fee
                             print(cmd)
-                            #result = subprocess.call(cmd, stdout=outfile)
+                            result = subprocess.check_output(cmd)
                             #outfile.write(output + "\n")
                             #result = os.system("node . mint " + args.address + " '" + location + file + "' " + args.fee)
-                            result = os.system('pdv -t %s > output.txt' % cmd)
                           
                             print("Output: " + str(result))
                             time.sleep(1.0)
-                            if result == 0:
+                            if "txid" in result:
                                     os.system("mv" + " '" + location + file + "' " + location + "done/")
                                     print("Count: " + str(i))
-                            if result == 512:
-                                    #skip to next file
-                                    result = 0  
