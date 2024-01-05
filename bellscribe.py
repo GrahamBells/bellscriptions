@@ -17,18 +17,19 @@ i = 0
 
 os.system("mkdir " + location + "done")
 
-with open('output.csv','w+') as f:
+with open('output.txt','a') as outfile:
     for file in sorted(os.listdir(location)):
             if file != "order_details.txt" and file != "done" and file != "output.csv":
                     result = 1
                     i += 1
                     while result != 0:
-                            print("node . mint " + args.address + " '" + location + file + " '" + args.fee + "'")
-                            result = os.system("node . mint " + args.address + " '" + location + file + " '" + args.fee + "'")
-                            row=','.join([result])+'\n'
-                            f.write(row)
-                            print("Output: " + str(result))
-                            time.sleep(0.5)
+                            cmd = "node . mint " + args.address + " '" + location + file + "' " + args.fee
+                            print(cmd)
+                            outfile.write(os.popen(cmd).read()+"\n")
+                            #result = os.system("node . mint " + args.address + " '" + location + file + "' " + args.fee)
+                          
+                            #print("Output: " + str(result))
+                            #time.sleep(0.5)
                             if result == 0:
                                     os.system("mv" + " '" + location + file + "' " + location + "done/")
                                     print("Count: " + str(i))

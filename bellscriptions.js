@@ -37,7 +37,7 @@ async function main() {
 			)
 			return
 		}
-		const count = parseInt(process.argv[5], 10)
+		const count = parseInt(process.argv[6], 10)
 
 		if (!isNaN(count)) {
 			for (let i = 0; i < count; i++) {
