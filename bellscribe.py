@@ -25,10 +25,11 @@ with open('output.txt','a') as outfile:
                     i += 1
                     while result != 0:
                             cmd = "node . mint " + args.address + " '" + location + file + "' " + args.fee
-                            #print("node . mint " + args.address + " '" + location + file + "' " + args.fee)
-                            result = subprocess.call(cmd, stdout=outfile)
+                            print(cmd)
+                            #result = subprocess.call(cmd, stdout=outfile)
                             #outfile.write(output + "\n")
                             #result = os.system("node . mint " + args.address + " '" + location + file + "' " + args.fee)
+                            result = os.system('pdv -t %s > output.txt' % cmd)
                           
                             print("Output: " + str(result))
                             time.sleep(1.0)
