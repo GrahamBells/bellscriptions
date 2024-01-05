@@ -19,13 +19,14 @@ os.system("mkdir " + location + "done")
 
 with open('output.txt','a') as outfile:
     for file in sorted(os.listdir(location)):
-            if file != "order_details.txt" and file != "done" and file != "output.csv":
+            if file != "order_details.txt" and file != "done" and file != "output.txt":
                     result = 1
                     i += 1
                     while result != 0:
-                            cmd = "node . mint " + args.address + " '" + location + file + "' " + args.fee
-                            print(cmd)
-                            outfile.write(os.popen(cmd).read()+"\n")
+                            #cmd = "node . mint " + args.address + " '" + location + file + "' " + args.fee
+                            print("node . mint " + args.address + " '" + location + file + "' " + args.fee)
+                            output = os.popen("node . mint " + args.address + " '" + location + file + "' " + args.fee).read()
+                            outfile.write(output + "\n")
                             #result = os.system("node . mint " + args.address + " '" + location + file + "' " + args.fee)
                           
                             #print("Output: " + str(result))
